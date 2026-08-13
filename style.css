@@ -9,7 +9,6 @@ body {
   min-height: 100vh;
   background: url('Madam.jpeg') no-repeat center/cover;
   background-color: #0b0c10;
-  background-attachment: fixed;
   font-family: 'Playfair Display', serif;
   display: flex;
   align-items: center;
@@ -23,8 +22,16 @@ body::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+  background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
   z-index: 0;
+}
+
+@supports (background-attachment: fixed) {
+  @media (min-width: 769px) {
+    body {
+      background-attachment: fixed;
+    }
+  }
 }
 
 .mode-btn {
@@ -57,11 +64,15 @@ body::before {
 }
 
 h1 {
-  font-size: 42px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 56px;
   font-weight: 700;
   margin: 0 0 15px 0;
-  letter-spacing: 1px;
-  text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 20px rgba(0,0,0,0.7), 0 0 40px rgba(212, 181, 129, 0.3);
+  font-style: normal;
+  word-spacing: 8px;
+  line-height: 1.2;
 }
 
 .glass-card {
@@ -203,8 +214,11 @@ h1 {
   }
   
   h1 {
-    font-size: 32px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
     margin: 0 0 10px 0;
+    letter-spacing: 2.5px;
+    word-spacing: 7px;
   }
   
   .glass-card {
@@ -229,6 +243,7 @@ h1 {
 @media (max-width: 480px) {
   body {
     background-position: center;
+    background-attachment: scroll;
   }
   
   .ui-container {
@@ -237,8 +252,11 @@ h1 {
   }
   
   h1 {
-    font-size: 28px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
     margin: 20px 0 10px 0;
+    letter-spacing: 2px;
+    word-spacing: 6px;
   }
   
   .glass-card {
@@ -290,7 +308,9 @@ h1 {
 /* VERY SMALL DEVICES (Under 360px) */
 @media (max-width: 360px) {
   h1 {
-    font-size: 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    letter-spacing: 1.5px;
   }
   
   .glass-card {
