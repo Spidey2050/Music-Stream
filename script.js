@@ -1,8 +1,9 @@
 const playlist = [
-  { id: 'uyupd2PXbSQ', title: 'Lofi Test Track (Royalty Free)' }, 
+  { id: 'x3Ipm2gI1bM', title: 'You Are In Love' }, 
   { id: 'rGAS66E9rMQ', title: 'Enchanted' }, 
-  { id: 'e-ORhEE9VVg', title: 'Blank Space' },
-  { id: '-BjZmE2gtdo', title: 'Lover' }
+  { id: 'wXpz9vmWEC4', title: 'The Way I Loved You' },
+  { id: 'HkAB1Gavw1Y', title: 'Daylight' }
+  { id: 'EUrVc1o8yFo', title: 'Slut!' }
 ];
 
 let currentIndex = 0;
