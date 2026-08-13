@@ -2,7 +2,7 @@ const playlist = [
   { id: 'x3Ipm2gI1bM', title: 'You Are In Love' }, 
   { id: 'rGAS66E9rMQ', title: 'Enchanted' }, 
   { id: 'wXpz9vmWEC4', title: 'The Way I Loved You' },
-  { id: 'HkAB1Gavw1Y', title: 'Daylight' }
+  { id: 'HkAB1Gavw1Y', title: 'Daylight' },
   { id: 'EUrVc1o8yFo', title: 'Slut!' }
 ];
 
