@@ -1,6 +1,6 @@
-// Add unofficial Lyric Video IDs here to prevent embedding errors
 const playlist = [
-  { id: 'ic8j13piAhQ', title: 'Cruel Summer' }, 
+  { id: 'uyupd2PXbSQ', title: 'Lofi Test Track (Royalty Free)' }, 
+  { id: 'rGAS66E9rMQ', title: 'Enchanted' }, 
   { id: 'e-ORhEE9VVg', title: 'Blank Space' },
   { id: '-BjZmE2gtdo', title: 'Lover' }
 ];
@@ -9,46 +9,71 @@ let currentIndex = 0;
 let player;
 let progressInterval;
 
-// DOM Elements
 const titleEl = document.getElementById('current-title');
 const iconPlay = document.getElementById('icon-play');
 const iconPause = document.getElementById('icon-pause');
 const timeCurrent = document.getElementById('time-current');
 const timeTotal = document.getElementById('time-total');
 const progressFill = document.getElementById('progress-fill');
+const clockEl = document.getElementById('clock');
 
-// Event Listeners for UI
 document.getElementById('playPauseBtn').addEventListener('click', playPauseToggle);
 document.getElementById('prevBtn').addEventListener('click', prevTrack);
 document.getElementById('nextBtn').addEventListener('click', nextTrack);
 
-// Inject YouTube IFrame API
+// Clock Logic
+function updateClock() {
+  const now = new Date();
+  let hours = now.getHours();
+  let minutes = now.getMinutes();
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  clockEl.textContent = `${hours}:${minutes} ${ampm}`;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// YouTube API Injection
 const tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 const firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// Initialize YouTube Player
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '200',
     width: '200',
     videoId: playlist[currentIndex].id,
+    host: 'https://www.youtube-nocookie.com', // Bypasses ad-blocker network restrictions
     playerVars: { 
-      controls: 0, 
-      disablekb: 1, 
-      rel: 0, 
-      playsinline: 1 
+      'controls': 0, 
+      'disablekb': 1, 
+      'rel': 0, 
+      'playsinline': 1,
+      'enablejsapi': 1,
+      'origin': window.location.origin,
+      'widget_referrer': window.location.origin 
     },
     events: {
       'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange
+      'onStateChange': onPlayerStateChange,
+      'onError': onPlayerError // Catches copyright blocks
     }
   });
 }
 
 function onPlayerReady() {
   titleEl.textContent = playlist[currentIndex].title;
+}
+
+// The Diagnostic Tool: Alerts you if a record label blocks the video
+function onPlayerError(event) {
+  console.error("YouTube API Error Code:", event.data);
+  if (event.data === 150 || event.data === 101) {
+    alert("Error 150: The record label disabled external embedding for this specific video. You have to find a different YouTube ID for this song!");
+  }
 }
 
 function onPlayerStateChange(event) {
@@ -60,18 +85,17 @@ function onPlayerStateChange(event) {
     iconPlay.style.display = 'none';
     iconPause.style.display = 'block';
     progressInterval = setInterval(updateProgressBar, 1000);
-  } else {
+  } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.UNSTARTED) {
     iconPlay.style.display = 'block';
     iconPause.style.display = 'none';
     clearInterval(progressInterval);
   }
 }
 
-// Media Controls Logic
 function playPauseToggle() {
-  if (!player) return;
+  if (!player || !player.getPlayerState) return;
   const state = player.getPlayerState();
-  if (state === YT.PlayerState.PLAYING) {
+  if (state === YT.PlayerState.PLAYING || state === YT.PlayerState.BUFFERING) {
     player.pauseVideo();
   } else {
     player.playVideo();
@@ -92,12 +116,14 @@ function loadNewTrack() {
   titleEl.textContent = playlist[currentIndex].title;
   progressFill.style.width = '0%';
   timeCurrent.textContent = '0:00';
-  if(player) {
+  iconPlay.style.display = 'block';
+  iconPause.style.display = 'none';
+  
+  if(player && player.loadVideoById) {
     player.loadVideoById(playlist[currentIndex].id);
   }
 }
 
-// Progress Bar Math
 function updateProgressBar() {
   if (player && player.getDuration) {
     const currentTime = player.getCurrentTime();
@@ -111,7 +137,6 @@ function updateProgressBar() {
   }
 }
 
-// Time Formatting
 function formatTime(time) {
   const minutes = Math.floor(time / 60);
   const seconds = Math.floor(time % 60);

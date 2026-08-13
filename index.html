@@ -4,11 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Madam Fav | Ambient Player</title>
-  
-  <!-- Link to external CSS -->
   <link rel="stylesheet" href="style.css">
-  
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -36,9 +32,7 @@
         </button>
         
         <button class="btn-play" id="playPauseBtn" aria-label="Play/Pause">
-          <!-- Play Icon -->
           <svg id="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          <!-- Pause Icon (Hidden by default) -->
           <svg id="icon-pause" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
         </button>
         
@@ -47,14 +41,30 @@
         </button>
       </div>
     </div>
-
-    <div class="bottom-text">Folklore - 20 &nbsp;&nbsp;&nbsp; 1989 - 20</div>
   </div>
 
-  <!-- Hidden YouTube Player Engine -->
-  <div id="player"></div>
+  <!-- Live Clock -->
+  <div class="live-clock" id="clock">00:00 AM</div>
 
-  <!-- Link to external JavaScript -->
+  <!-- Social Links -->
+  <div class="social-links">
+    <a href="YOUR_SPOTIFY_LINK_HERE" target="_blank" aria-label="Spotify">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+        <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424c-.18.295-.556.388-.85.207-2.33-1.423-5.263-1.745-8.718-.954-.33.076-.65-.13-.726-.46-.077-.33.13-.65.46-.727 3.774-.863 7-.5 9.627 1.104.294.18.388.556.207.85zm1.12-3.18c-.227.368-.707.48-1.075.253-2.67-1.64-6.754-2.126-9.965-1.16-.41.125-.838-.106-.963-.516-.126-.41.106-.838.516-.963 3.66-1.1 8.214-.565 11.233 1.293.368.227.48.707.254 1.075zm.116-3.344C14.654 8.018 9.537 7.822 5.56 9.026c-.487.148-.99-.126-1.138-.613-.148-.487.126-.99.613-1.138 4.49-1.36 10.155-1.134 13.914 1.096.438.26.58.847.32 1.285-.26.438-.847.58-1.285.32z"/>
+      </svg>
+    </a>
+    <a href="YOUR_YOUTUBE_LINK_HERE" target="_blank" aria-label="YouTube">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+        <path d="M21.582 6.186a2.625 2.625 0 0 0-1.846-1.846C18.106 4 12 4 12 4s-6.106 0-7.736.34a2.625 2.625 0 0 0-1.846 1.846C2 7.814 2 12 2 12s0 4.186.34 5.814a2.625 2.625 0 0 0 1.846 1.846C5.894 20 12 20 12 20s6.106 0 7.736-.34a2.625 2.625 0 0 0 1.846-1.846C22 16.186 22 12 22 12s0-4.186-.34-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- The Security Cloak for YouTube -->
+  <div class="video-cloak">
+    <div id="player"></div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>

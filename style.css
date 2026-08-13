@@ -7,17 +7,16 @@
 body {
   margin: 0;
   height: 100vh;
-  /* Make sure your image is named exactly this in your folder */
-  background: url('madam-fav-bg.jpg') no-repeat left center/cover;
+  background: url('Madam.jpeg') no-repeat left center/cover;
   background-color: #0b0c10;
   font-family: 'Playfair Display', serif;
   display: flex;
   align-items: center;
   color: var(--text-main);
   overflow: hidden;
+  position: relative;
 }
 
-/* Dark gradient to ensure UI is readable while preserving the art on the left */
 body::before {
   content: '';
   position: absolute;
@@ -26,7 +25,6 @@ body::before {
   z-index: 0;
 }
 
-/* Top Right Pill */
 .mode-btn {
   position: absolute;
   top: 30px;
@@ -44,7 +42,6 @@ body::before {
   font-family: sans-serif;
 }
 
-/* Main UI Container - Shifted right */
 .ui-container {
   position: relative;
   z-index: 10;
@@ -65,7 +62,6 @@ h1 {
   text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
 }
 
-/* Glassmorphism Card */
 .glass-card {
   background: rgba(30, 30, 35, 0.4);
   backdrop-filter: blur(12px) saturate(110%);
@@ -92,7 +88,6 @@ h1 {
   margin: 0 0 20px 0;
 }
 
-/* Progress Bar */
 .progress-container {
   display: flex;
   align-items: center;
@@ -122,7 +117,6 @@ h1 {
   transition: width 0.5s linear;
 }
 
-/* Media Controls */
 .controls {
   display: flex;
   align-items: center;
@@ -160,23 +154,54 @@ h1 {
   border-radius: 50%;
 }
 
-.bottom-text {
-  margin-top: 15px;
-  font-size: 15px;
-  color: var(--text-muted);
-  letter-spacing: 0.5px;
-  text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
-}
-
-/* The YouTube API Trick - Hidden entirely */
-#player {
+.live-clock {
   position: absolute;
-  left: -9999px;
-  top: -9999px;
+  bottom: 30px;
+  left: 40px;
+  font-family: sans-serif;
+  font-size: 14px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  z-index: 10;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
 
-/* Responsive */
+.social-links {
+  position: absolute;
+  bottom: 30px;
+  right: 40px;
+  display: flex;
+  gap: 15px;
+  z-index: 10;
+}
+
+.social-links a {
+  color: var(--text-muted);
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.social-links a:hover {
+  color: var(--text-main);
+}
+
 @media (max-width: 800px) {
   body { background-position: center; }
   .ui-container { margin: 0 auto; padding: 0 20px; }
+  .mode-btn, .live-clock, .social-links { display: none; }
+}
+
+/* --- THE NEW CLOAKING DEVICE --- */
+/* Using 0.01 opacity prevents Chrome from freezing the frame to save RAM */
+.video-cloak {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0.01;
+  z-index: -100;
+  pointer-events: none;
 }
