@@ -1,195 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Madam Fav</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-      :root{
-        --accent: rgba(255,255,255,0.95);
-        --glass: rgba(255,255,255,0.04);
-        --glass-border: rgba(255,255,255,0.08);
-      }
-      html,body{height:100%;margin:0;font-family:'Playfair Display',serif;color:var(--accent);background:#000}
-      body{
-        background-image: url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.0.3&s=00000000000000000000000000000000');
-        background-size: cover;
-        background-position: center;
-        display:flex;align-items:center;justify-content:center;padding:36px;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Madam Fav | Ambient Player</title>
+  
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
 
-      /* Minimal glass card */
-      .card{
-        width: min(620px, 94vw);
-        padding: 28px 28px 22px;
-        border-radius: 14px;
-        background: var(--glass);
-        box-shadow: 0 6px 24px rgba(0,0,0,0.45);
-        border: 1px solid var(--glass-border);
-        backdrop-filter: blur(20px) saturate(120%);
-        -webkit-backdrop-filter: blur(20px) saturate(120%);
-        text-align:center;
-      }
+  <div class="mode-btn">MODE: TAYLOR'S VERSION</div>
 
-      h1{font-size: clamp(26px, 5vw, 40px);margin:0;padding:0;letter-spacing:0.6px}
-      .song-title{font-size:15px;margin-top:10px;opacity:0.95}
-
-      /* Icon-only controls for minimalist look */
-      .controls{display:flex;gap:14px;align-items:center;justify-content:center;margin-top:20px}
-      .btn{
-        width:56px;height:56px;border-radius:50%;display:inline-grid;place-items:center;
-        background: transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent);
-        cursor:pointer;font-size:20px;transition:transform .12s ease,background .12s ease;border-radius:50%;
-      }
-      .btn:focus{outline:2px solid rgba(255,255,255,0.06);outline-offset:4px}
-      .btn:hover{transform:translateY(-3px);background: rgba(255,255,255,0.02)}
-
-      .small{font-size:12px;opacity:0.72;margin-top:12px}
-
-      /* Hide the YouTube player element completely */
-      #player{display:none;height:0;width:0;overflow:hidden}
-
-      @media (max-width:420px){
-        .card{padding:18px}
-        .btn{width:48px;height:48px;font-size:18px}
-      }
-    </style>
-  </head>
-  <body>
-    <div class="card" role="region" aria-label="Madam Fav player">
-      <h1>Madam Fav</h1>
+  <div class="ui-container">
+    <h1>Madam Fav</h1>
+    
+    <div class="glass-card">
+      <div class="subtitle">Taylor's Version • ambient player</div>
       <div class="song-title" id="current-title">Loading...</div>
-
-      <div class="controls" aria-hidden="false">
-        <button class="btn" id="prevBtn" title="Previous" aria-label="Previous">⟸</button>
-        <button class="btn" id="playPauseBtn" title="Play/Pause" aria-label="Play/Pause">▶</button>
-        <button class="btn" id="nextBtn" title="Next" aria-label="Next">⟹</button>
+      
+      <div class="progress-container">
+        <span id="time-current">0:00</span>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <span id="time-total">0:00</span>
       </div>
 
-      <div class="small">Replace background with your photo at the top of the file (e.g. my-photo.jpg)</div>
+      <div class="controls">
+        <button id="prevBtn" aria-label="Previous">
+          <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+        </button>
+        
+        <button class="btn-play" id="playPauseBtn" aria-label="Play/Pause">
+          <!-- Play Icon -->
+          <svg id="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <!-- Pause Icon (Hidden by default) -->
+          <svg id="icon-pause" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        
+        <button id="nextBtn" aria-label="Next">
+          <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+        </button>
+      </div>
     </div>
 
-    <!-- Hidden YouTube player (audio engine) -->
-    <div id="player"></div>
+    <div class="bottom-text">Folklore - 20 &nbsp;&nbsp;&nbsp; 1989 - 20</div>
+  </div>
 
-    <script>
-      const playlist = [
-        { id: '-3BAd4qSNbQ', title: 'Cruel Summer' },
-        { id: 'e-ORhEE9VVg', title: 'Blank Space' },
-        { id: '-BjZmE2gtdo', title: 'Lover' },
-        { id: 'b1kbLwvqugk', title: 'Anti-Hero' },
-        { id: 'K-a8s8OLBSE', title: 'august' },
-        { id: 'olgsnMwEuy4', title: 'willow' }
-      ];
+  <!-- Hidden YouTube Player Engine -->
+  <div id="player"></div>
 
-      let currentIndex = 0;
-      let player;
-      const titleEl = document.getElementById('current-title');
-      const playPauseBtn = document.getElementById('playPauseBtn');
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-
-      // Load YouTube IFrame API
-      var tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      function onYouTubeIframeAPIReady(){
-        player = new YT.Player('player', {
-          height: '0',
-          width: '0',
-          videoId: playlist[currentIndex].id,
-          playerVars: {
-            controls: 0,
-            disablekb: 1,
-            modestbranding: 1,
-            rel: 0,
-            playsinline: 1
-          },
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-      }
-
-      function onPlayerReady(){
-        updateUI();
-      }
-
-      function onPlayerStateChange(event){
-        const YTState = YT.PlayerState;
-        if(event.data === YTState.ENDED){
-          nextTrack();
-        }
-        updatePlayPauseButton();
-      }
-
-      function updateUI(){
-        titleEl.textContent = playlist[currentIndex].title;
-        updatePlayPauseButton();
-      }
-
-      function updatePlayPauseButton(){
-        if(!player) return;
-        const state = player.getPlayerState();
-        if(state === YT.PlayerState.PLAYING){
-          playPauseBtn.textContent = '⏸';
-        } else {
-          playPauseBtn.textContent = '▶';
-        }
-      }
-
-      function playPauseToggle(){
-        if(!player) return;
-        const state = player.getPlayerState();
-        if(state === YT.PlayerState.PLAYING){
-          player.pauseVideo();
-        } else {
-          const videoId = playlist[currentIndex].id;
-          try{
-            // load and play the current video
-            player.loadVideoById(videoId);
-          }catch(e){
-            player.cueVideoById(videoId);
-            player.playVideo();
-          }
-        }
-        setTimeout(updatePlayPauseButton, 150);
-      }
-
-      function prevTrack(){
-        currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
-        titleEl.textContent = playlist[currentIndex].title;
-        if(player) player.loadVideoById(playlist[currentIndex].id);
-        setTimeout(updatePlayPauseButton, 200);
-      }
-
-      function nextTrack(){
-        currentIndex = (currentIndex + 1) % playlist.length;
-        titleEl.textContent = playlist[currentIndex].title;
-        if(player) player.loadVideoById(playlist[currentIndex].id);
-        setTimeout(updatePlayPauseButton, 200);
-      }
-
-      // Button wiring
-      playPauseBtn.addEventListener('click', playPauseToggle);
-      prevBtn.addEventListener('click', prevTrack);
-      nextBtn.addEventListener('click', nextTrack);
-
-      // Keyboard shortcuts: space to toggle, left/right for prev/next
-      window.addEventListener('keydown', (e)=>{
-        if(e.code === 'Space'){
-          e.preventDefault();
-          playPauseToggle();
-        } else if(e.key === 'ArrowLeft'){
-          prevTrack();
-        } else if(e.key === 'ArrowRight'){
-          nextTrack();
-        }
-      });
-    </script>
-  </body>
+  <!-- Link to external JavaScript -->
+  <script src="script.js"></script>
+</body>
 </html>

@@ -1,0 +1,182 @@
+:root {
+  --text-main: #fcfaf5;
+  --text-muted: #c9c3b1;
+  --accent-gold: #d4b581;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  /* Make sure your image is named exactly this in your folder */
+  background: url('madam-fav-bg.jpg') no-repeat left center/cover;
+  background-color: #0b0c10;
+  font-family: 'Playfair Display', serif;
+  display: flex;
+  align-items: center;
+  color: var(--text-main);
+  overflow: hidden;
+}
+
+/* Dark gradient to ensure UI is readable while preserving the art on the left */
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0) 20%, rgba(0,0,0,0.6) 70%);
+  z-index: 0;
+}
+
+/* Top Right Pill */
+.mode-btn {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--text-muted);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10;
+  font-family: sans-serif;
+}
+
+/* Main UI Container - Shifted right */
+.ui-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: 10%;
+}
+
+h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
+}
+
+/* Glassmorphism Card */
+.glass-card {
+  background: rgba(30, 30, 35, 0.4);
+  backdrop-filter: blur(12px) saturate(110%);
+  -webkit-backdrop-filter: blur(12px) saturate(110%);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 25px 35px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.subtitle {
+  font-style: italic;
+  font-size: 15px;
+  color: var(--text-muted);
+  margin: 0 0 6px 0;
+}
+
+.song-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+}
+
+/* Progress Bar */
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  font-size: 11px;
+  font-family: sans-serif;
+  color: var(--text-muted);
+}
+
+.progress-bar {
+  flex-grow: 1;
+  height: 3px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+  position: relative;
+}
+
+.progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--accent-gold);
+  width: 0%;
+  border-radius: 2px;
+  transition: width 0.5s linear;
+}
+
+/* Media Controls */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.controls button {
+  background: none;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: transform 0.2s;
+}
+
+.controls button:hover {
+  transform: scale(1.1);
+}
+
+.controls svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.btn-play {
+  background: var(--accent-gold) !important;
+  color: #111 !important;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+.bottom-text {
+  margin-top: 15px;
+  font-size: 15px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+}
+
+/* The YouTube API Trick - Hidden entirely */
+#player {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  body { background-position: center; }
+  .ui-container { margin: 0 auto; padding: 0 20px; }
+}
