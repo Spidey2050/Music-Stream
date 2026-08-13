@@ -21,6 +21,18 @@ document.getElementById('playPauseBtn').addEventListener('click', playPauseToggl
 document.getElementById('prevBtn').addEventListener('click', prevTrack);
 document.getElementById('nextBtn').addEventListener('click', nextTrack);
 
+// Touch event support for mobile
+document.getElementById('playPauseBtn').addEventListener('touchend', playPauseToggle);
+document.getElementById('prevBtn').addEventListener('touchend', prevTrack);
+document.getElementById('nextBtn').addEventListener('touchend', nextTrack);
+
+// Prevent default touch behaviors for better mobile experience
+document.addEventListener('touchmove', function(e) {
+  if (e.target.closest('.controls')) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
 // Clock Logic
 function updateClock() {
   const now = new Date();
@@ -35,6 +47,13 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
+// Handle device orientation changes for responsive layout
+window.addEventListener('orientationchange', function() {
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 100);
+});
+
 // YouTube API Injection
 const tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
@@ -42,9 +61,13 @@ const firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function onYouTubeIframeAPIReady() {
+  // Responsive player dimensions based on screen size
+  const playerWidth = window.innerWidth > 480 ? '200' : '0';
+  const playerHeight = window.innerWidth > 480 ? '200' : '0';
+  
   player = new YT.Player('player', {
-    height: '200',
-    width: '200',
+    height: playerHeight,
+    width: playerWidth,
     videoId: playlist[currentIndex].id,
     host: 'https://www.youtube-nocookie.com', // Bypasses ad-blocker network restrictions
     playerVars: { 
