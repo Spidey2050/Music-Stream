@@ -1,9 +1,11 @@
 const playlist = [
-  { id: 'x3Ipm2gI1bM', title: 'You Are In Love' }, 
-  { id: 'rGAS66E9rMQ', title: 'Enchanted' }, 
-  { id: 'wXpz9vmWEC4', title: 'The Way I Loved You' },
+  { id: 'rGAS66E9rMQ', title: 'Enchanted' },
+  { id: 'pcHHyi9Wdts', title: 'Everything has changed' },
+  { id: 'OuFnpmGwg5k', title: 'invisible string' },
+  { id: 'x3Ipm2gI1bM', title: 'You Are In Love' },
+  { id: 'DzCGD9PO1Dg', title: 'MINE' }, 
   { id: 'HkAB1Gavw1Y', title: 'Daylight' },
-  { id: 'EUrVc1o8yFo', title: 'Slut!' }
+  { id: 'LfJ_Rx9PTwg', title: 'Timeless' }
 ];
 
 let currentIndex = 0;
