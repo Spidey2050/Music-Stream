@@ -3,6 +3,7 @@ const playlist = [
   { id: 'pcHHyi9Wdts', title: 'Everything has changed' },
   { id: 'OuFnpmGwg5k', title: 'invisible string' },
   { id: 'x3Ipm2gI1bM', title: 'You Are In Love' },
+  { id: 'tgVYh94QH8k', title: 'Lover' },
   { id: 'DzCGD9PO1Dg', title: 'MINE' }, 
   { id: 'HkAB1Gavw1Y', title: 'Daylight' },
   { id: 'LfJ_Rx9PTwg', title: 'Timeless' }
