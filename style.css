@@ -252,9 +252,45 @@ h1 {
     font-size: 20px;
     margin: 0 0 15px 0;
   }
-  
-  .mode-btn, .live-clock, .social-links { 
-    display: none; 
+
+  .mode-btn {
+    display: block;
+    top: 14px;
+    right: 14px;
+    padding: 5px 10px;
+    font-size: 10px;
+    letter-spacing: 0.8px;
+  }
+
+  .live-clock {
+    display: block;
+    left: 14px;
+    bottom: 14px;
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .social-links {
+    display: flex;
+    right: 14px;
+    bottom: 14px;
+    gap: 12px;
+  }
+
+  .social-links a {
+    background: rgba(8, 8, 10, 0.45);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    width: 34px;
+    height: 34px;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .social-links a svg {
+    width: 18px;
+    height: 18px;
   }
   
   .controls {
@@ -329,6 +365,38 @@ h1 {
   .btn-play {
     width: 50px !important;
     height: 50px !important;
+  }
+
+  .mode-btn {
+    top: 10px;
+    right: 10px;
+    font-size: 9px;
+    padding: 4px 8px;
+    max-width: calc(100vw - 20px);
+    white-space: nowrap;
+  }
+
+  .live-clock {
+    left: 10px;
+    bottom: 10px;
+    font-size: 11px;
+    padding: 4px 9px;
+  }
+
+  .social-links {
+    right: 10px;
+    bottom: 10px;
+    gap: 10px;
+  }
+
+  .social-links a {
+    width: 32px;
+    height: 32px;
+  }
+
+  .social-links a svg {
+    width: 16px;
+    height: 16px;
   }
 }
 
