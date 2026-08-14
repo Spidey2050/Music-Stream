@@ -1,58 +1,67 @@
 # Madam Fav - Ambient Music Player
 
-A beautiful, ambient music player featuring Taylor Swift's most iconic tracks with a glassmorphism UI design.
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white">
 
-## Features
+A beautiful, ambient music player featuring Taylor Swift's most iconic tracks with a modern glassmorphism UI design. Built to run seamlessly in the background without standard media player clutter.
 
-- 🎵 YouTube-powered playlist with Taylor Swift tracks
-- ⏱️ Live clock display with AM/PM time
-- 🎨 Modern glassmorphism design
-- ▶️ Play/Pause/Next/Previous controls
-- 📊 Progress bar with time tracking
-- 📱 Fully responsive design
-- 🌐 Social media links (Spotify, YouTube)
+> **Tip:** Add a screenshot of your beautiful UI here later by dragging an image into this file!
 
-## Live Demo
+## 🚀 Live Demos
 
-Visit: **https://spidey2050.github.io/Music-Stream**
+- **Primary Deployment (Vercel):** https://music-stream-six.vercel.app
+- **Secondary Deployment (GitHub Pages):** https://spidey2050.github.io/Music-Stream
 
-## Technologies Used
+## ✨ Features
 
-- HTML5
-- CSS3 (Backdrop filters, Flexbox)
-- Vanilla JavaScript
-- YouTube IFrame API
-- Google Fonts (Playfair Display)
+- 🎵 **Invisible Audio Engine:** YouTube-powered playlist bypassing standard embedding limits.
+- ⏱️ **Live Clock:** Real-time localized AM/PM display.
+- 🎨 **Glassmorphism UI:** Modern frosted-glass aesthetic (`backdrop-filter`) that complements the background art.
+- ▶️ **Custom Controls:** Fully functional Play/Pause, Next, and Previous functions.
+- 📊 **Dynamic Progress Bar:** Real-time tracking of song duration.
+- 📱 **Responsive Design:** Asymmetrical layout that highlights background artwork and scales gracefully.
+- 🌐 **Social Links:** Quick access to Spotify and YouTube.
 
-## Getting Started
+## 🛠️ Technologies Used
+
+- **HTML5:** Semantic structure.
+- **CSS3:** Custom variables, flexbox, CSS cloaking techniques.
+- **Vanilla JavaScript:** State management, DOM manipulation, clock logic.
+- **YouTube IFrame API:** Background audio playback integration.
+- **Google Fonts:** Playfair Display for editorial typography.
+
+## ⚙️ Getting Started
 
 1. Clone the repository:
    ```bash
    git clone https://github.com/Spidey2050/Music-Stream.git
    ```
+2. Open the project folder in VS Code.
+3. Start a local server (for example, Live Server) to bypass CORS restrictions.
+4. Enjoy the music.
 
-2. Open `index.html` in your browser
+## 📂 Project Structure
 
-## Project Structure
-
-```
+```plaintext
 ├── index.html      # Main HTML file with UI structure
-├── script.js       # JavaScript for player functionality
-├── style.css       # Styling and animations
-└── Madam.jpeg      # Background image
+├── script.js       # JavaScript for player engine and logic
+├── style.css       # Styling, animations, and security cloaking
+└── Madam.jpeg      # Dynamic background artwork
 ```
 
-## Customization
+## 🎨 Customization
 
-- **Edit Playlist**: Modify the `playlist` array in `script.js`
-- **Update Social Links**: Replace placeholder URLs in `index.html`
-- **Change Background**: Replace `Madam.jpeg` with your own image
-- **Adjust Colors**: Modify CSS variables in `:root` in `style.css`
+- **Edit Playlist:** Modify the `playlist` array inside `script.js` with new 11-character YouTube IDs.
+- **Update Social Links:** Replace the placeholder `href` URLs in `index.html`.
+- **Change Background:** Replace `Madam.jpeg` with your own image, or update the file path in `style.css`.
+- **Adjust Colors:** Modify the CSS variables inside the `:root` selector in `style.css`.
 
-## License
+## 📜 License
 
 This project is open source and available under the MIT License.
 
-## Author
+## 👨‍💻 Author
 
-Created by [Spidey2050](https://github.com/Spidey2050)
+Created by [Sayan Bhowmik (Spidey2050)](https://github.com/Spidey2050)
