@@ -21,14 +21,33 @@ const timeTotal = document.getElementById('time-total');
 const progressFill = document.getElementById('progress-fill');
 const clockEl = document.getElementById('clock');
 
-document.getElementById('playPauseBtn').addEventListener('click', playPauseToggle);
-document.getElementById('prevBtn').addEventListener('click', prevTrack);
-document.getElementById('nextBtn').addEventListener('click', nextTrack);
+const playPauseBtn = document.getElementById('playPauseBtn');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
 
-// Touch event support for mobile
-document.getElementById('playPauseBtn').addEventListener('touchend', playPauseToggle);
-document.getElementById('prevBtn').addEventListener('touchend', prevTrack);
-document.getElementById('nextBtn').addEventListener('touchend', nextTrack);
+// On touch devices, using both click + touchend causes each press to run twice.
+const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+if (isTouchDevice) {
+  playPauseBtn.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    playPauseToggle();
+  }, { passive: false });
+
+  prevBtn.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    prevTrack();
+  }, { passive: false });
+
+  nextBtn.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    nextTrack();
+  }, { passive: false });
+} else {
+  playPauseBtn.addEventListener('click', playPauseToggle);
+  prevBtn.addEventListener('click', prevTrack);
+  nextBtn.addEventListener('click', nextTrack);
+}
 
 // Prevent default touch behaviors for better mobile experience
 document.addEventListener('touchmove', function(e) {
