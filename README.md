@@ -7,8 +7,6 @@
 
 A beautiful, ambient music player featuring Taylor Swift's most iconic tracks with a modern glassmorphism UI design. Built to run seamlessly in the background without standard media player clutter.
 
-> **Tip:** Add a screenshot of your beautiful UI here later by dragging an image into this file!
-
 ## 🚀 Live Demos
 
 - **Primary Deployment (Vercel):** https://music-stream-six.vercel.app
